@@ -1,0 +1,939 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: #FBF6F1;
+}
+
+/* Button Styles */
+.btn {
+  padding: 7px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.white-btn {
+  background: #fff;
+  color: #111;
+}
+
+.purple-btn {
+  background: #007BF1;
+  color: #fff;
+}
+
+/* Typography */
+p, span, a {
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 900;
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 900;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+h5, h6 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media (max-width: 1186px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+}
+
+/* Container Padding */
+.container {
+  padding: 0 100px;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  gap: 30px;
+  padding: 200px 0;
+  position: relative;
+}
+
+.hero .banner {
+  flex: 1;
+}
+
+.hero .banner h1,
+.hero .banner p {
+  max-width: 650px;
+}
+
+.hero .banner h1 {
+  letter-spacing: 2px;
+  word-spacing: 5px;
+  font-size: 40px;
+}
+
+.hero .banner p {
+  color: #111;
+  letter-spacing: 2px;
+}
+
+.hero .banner span {
+  position: absolute;
+  right: -300px;
+  top: -200px;
+  z-index: -1;
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(20px);
+  }
+}
+
+.animated-image {
+  animation: moveUpDown 1s infinite alternate ease-in-out;
+}
+
+.ctaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Left align the contents */
+  margin-top: 10px;
+  /* Space between hero and CTA */
+}
+
+.ctaSection {
+  text-align: center;
+  /* Use hyphen instead of camelCase */
+  margin-bottom: 10px;
+  /* Use hyphen instead of camelCase */
+  padding: 20px;
+  background-color: #ffffff;
+  /* Use hyphen instead of camelCase */
+  border-radius: 8px;
+  /* Use hyphen instead of camelCase */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 0 30px 0;
+}
+
+.ctaTitle {
+  font-size: 20px;
+  /* Use hyphen instead of camelCase */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ctaDescription {
+  font-size: 14px;
+  /* Use hyphen instead of camelCase */
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.ctaButtons {
+  display: flex;
+  /* Remove quotes */
+  justify-content: center;
+  /* Use hyphen instead of camelCase */
+}
+
+.registerButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007BFF;
+  /* Use hyphen instead of camelCase */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  }
+  
+  @media (max-width: 1186px) {
+    .hero .banner span {
+      right: -400px;
+    }
+  
+    .hero .banner h1 {
+      font-size: 32px;
+    }
+  }
+  
+  @media (max-width: 925px) {
+    .hero {
+      flex-direction: column;
+      padding-bottom: 40px;
+    }
+  }
+
+/* Form Styles */
+.form-component {
+  padding: 40px 0 60px;
+}
+
+.form-component h2, .form-component h4 {
+  color: gray;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+}
+
+.form-component p {
+  max-width: 750px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.form-component form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-component form div {
+  display: flex;
+  gap: 30px;
+}
+
+.form-component form input, .form-component form select, .form-component form textarea {
+  flex: 1;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid gray;
+}
+
+.form-component button {
+  padding: 10px 35px;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  font-size: 22px;
+  margin-bottom: 30px;
+  background: linear-gradient(140deg, #9083d5, #271776ca);
+}
+
+@media (max-width: 888px) {
+  .form-component {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .form-component form div {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 667px) {
+  .form-component form input, .form-component form select, .form-component form textarea {
+    font-size: 24px;
+    padding: 10px;
+  }
+}
+
+/* Biography Section */
+.biography {
+  display: flex;
+  gap: 50px;
+  padding: 40px 0;
+}
+
+.biography .banner:first-child {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.biography .banner:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.biography .banner h3 {
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.biography .banner p:first-child {
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 925px) {
+  .biography {
+    flex-direction: column-reverse;
+  }
+}
+
+
+
+/* Footer Styles */
+footer {
+  padding-bottom: 30px !important;
+  font-size: 16px;
+}
+
+footer hr {
+  margin-bottom: 30px;
+}
+
+footer .content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size:"16px";
+}
+
+footer .content div {
+  font-size: 16px;
+  flex: 1;
+}
+
+footer .content div:nth-child(3) {
+  flex: 2;
+    font-size: 16px;
+}
+
+footer .content div h4 {
+  font-weight: 700;
+  margin-bottom: 20px;
+    font-size: 16px;
+}
+
+footer .content div ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+    font-size: 16px;
+}
+
+footer .content div ul a {
+  color: rgb(75, 71, 71);
+  text-decoration: none;
+}
+
+footer .content div ul a:hover {
+  color: #007BF1;
+  transition: 0.3s;
+}
+
+footer .content div ul li span {
+  color: rgb(85, 84, 84);
+}
+
+footer .content div:last-child div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+footer .content div:last-child div svg {
+  font-size: 16px;
+}
+
+@media (max-width: 1135px) {
+  footer .content div, footer .content div:nth-child(3) {
+    width: 300px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  footer {
+    padding-bottom: 0 !important;
+  }
+
+  footer .content div, footer .content div:nth-child(3) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  footer .content div:nth-child(3) ul li {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Departments Section */
+.departments {
+  padding: 30px 0 50px;
+}
+
+.departments h2 {
+  color: gray;
+  margin-bottom: 30px;
+}
+
+/* Card Styles */
+.card {
+  position: relative;
+  border-radius: 8px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 15px;
+  min-height: 360px;
+  margin: 0 10px;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.card img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
+
+.card .depart-name {
+  margin-bottom: 30px;
+  background: #e5e5e5;
+  width: 320px;
+  font-size: 24px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar Styles */
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 2;
+}
+
+nav .logo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+
+nav .navLinks {
+  flex: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .navLinks .links {
+  display: flex;
+  gap: 25px;
+}
+
+nav .navLinks .links a {
+  text-decoration: none;
+  color: #222;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+}
+
+nav .navLinks .links a:hover {
+  color: #000;
+  transition: 0.3s;
+}
+
+nav .btn {
+  padding: 8px 20px;
+  color: #e5e5e5;
+  background: transparent;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+nav .logoutBtn,
+nav .loginBtn {
+  background: linear-gradient(135deg, black, rgb(49, 49, 49));
+}
+
+nav .hamburger {
+  display: none;
+}
+
+nav svg {
+  font-size: 1.75rem;
+}
+
+@media (max-width: 1100px) {
+  nav {
+    background: #ffffffbf;
+    padding: 20px;
+  }
+
+  nav .hamburger {
+    display: flex;
+  }
+
+  nav .navLinks {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 300px;
+    height: calc(100% - 60px);
+    background: #ffffffbf;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  nav .navLinks.showmenu {
+    transform: translateX(0);
+  }
+
+  nav .navLinks .links {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  nav .navLinks {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 650px) {
+  nav .navLinks {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 555px) {
+  nav {
+    background: #fff;
+  }
+
+  nav .navLinks {
+    background: #fff;
+  }
+}
+.authButtons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+nav .registerBtn,
+nav .logoutBtn {
+  background: linear-gradient(135deg, #28a745, #218838); /* For Register button */
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+nav .registerBtn:hover,
+nav .logoutBtn:hover {
+  background: #007BF1; /* Darker green on hover */
+}
+
+
+/* Custom Placeholder Styling */
+input[type="date"]::before,
+input[type="time"]::before {
+  content: attr(placeholder);
+  color: #000;
+  margin-right: 0.5em;
+}
+
+/* Logo Image */
+.logo-img {
+  width: 150px;
+}
+
+footer .logo-img {
+  width: 70%;
+}
+
+/* General Form Styling */
+.patient-history-form {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 140px auto;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.patient-history-form h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+  letter-spacing: 0.3px;
+}
+
+/* Form Grid Layout */
+.patient-history-form .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.patient-history-form .form-row .form-group {
+  flex: 1;
+  min-width: calc(50% - 10px);
+  /* Two columns */
+}
+
+.patient-history-form .form-row .form-group.full-width {
+  width: 100%;
+  /* Full width for large inputs */
+}
+
+/* Input, Textarea, and Select Box Styles */
+.patient-history-form input,
+.patient-history-form textarea,
+.patient-history-form .css-yk16xz-control,
+.patient-history-form .css-1s2u09g-control {
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  height: 40px;
+  color: #000;
+  box-sizing: border-box;
+}
+
+.patient-history-form input:focus,
+.patient-history-form textarea:focus,
+.patient-history-form .css-yk16xz-control:focus,
+.patient-history-form .css-1s2u09g-control:focus {
+  border: 2px solid #000;
+  outline: none;
+}
+
+/* React Select Placeholder Styles */
+.patient-history-form .css-1s2u09g-control {
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 5px;
+  box-shadow: none;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.patient-history-form .css-1s2u09g-control .css-1wa3eu0-placeholder {
+  color: #000;
+}
+
+/* Select Box Styles */
+.patient-history-form .css-1s2u09g-control:hover {
+  border-color: #000;
+}
+
+.patient-history-form .css-1s2u09g-control:focus {
+  border-color: #000;
+  box-shadow: none;
+}
+
+/* Textarea Styles */
+.patient-history-form textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+/* Button Styles */
+.patient-history-form button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #007cf0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.patient-history-form button:hover {
+  background: #016d97;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .patient-history-form .form-row {
+    flex-direction: column;
+  }
+
+  .patient-history-form .form-row .form-group {
+    min-width: 100%;
+  }
+
+  .patient-history-form input,
+  .patient-history-form textarea,
+  .patient-history-form .css-yk16xz-control,
+  .patient-history-form .css-1s2u09g-control {
+    font-size: 14px;
+    height: 45px;
+  }
+
+  .patient-history-form button {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+
+/* Navbar Styles */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #B8D2E4;
+  padding: 20px 50px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 120px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navLinks a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: #9083d5;
+}
+
+.login-btn {
+  margin-left: auto;
+}
+
+.login-btn .btn {
+  background-color: #9083d5;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.login-btn .btn:hover {
+  background-color: #7366d3;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 1.75rem;
+}
+
+.hamburger svg {
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 300px;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+  }
+
+  .navLinks.showmenu {
+    right: 0;
+  }
+
+  .navLinks a {
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-btn {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .login-btn .btn {
+    width: 80%;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+/* Container for resources section */
+/* Container for resources section */
+/* Container for resources section */
+.resources {
+  margin-top: -90px;
+  /* Adjusted space above the section */
+  padding-bottom: 70px;
+  /* Space below the section */
+}
+
+/* Heading styling */
+.resources h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  /* Increased space below the heading */
+  font-size: 32px;
+  color: #333;
+}
+
+/* Card container styling */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Ensures the content is spaced out */
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 180px;
+  /* Adjust height to your preference */
+  margin: 20px 20px;
+  /* Increased space between cards */
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image styling */
+.card img {
+  width: 100%;
+  height: 220px;
+  /* Fixed height for images, adjust as needed */
+  object-fit: cover;
+}
+
+/* Card content styling */
+.card-content {
+  padding: 10px;
+  margin-top: auto;
+  /* Pushes content to the bottom */
+}
+
+/* Resource name styling */
+.resource-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  /* Space below the name */
+}
+
+/* Resource caption styling */
+.resource-caption {
+  font-size: 14px;
+  color: rgb(68, 66, 66);
+}
+
+/* Card hover effects */
+.card:hover {
+  transform: scale(1.05);
+  /* Slightly zooms the card on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  /* Adds a more pronounced shadow on hover */
+}
