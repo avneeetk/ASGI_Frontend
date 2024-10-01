@@ -22,7 +22,12 @@ const Login = () => {
         { email, password, confirmPassword, role: "Patient" },
         {
           withCredentials: true,
-          headers: { "Content-Type": "application/json" },
+          allowedHeaders: [
+            "Content-Type",
+            "Authorization",
+            "X-Requested-With",
+            "Access-Control-Allow-Origin", // Add this header if necessary
+          ],
         }
       );
       toast.success(res.data.message);

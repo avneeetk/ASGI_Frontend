@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { Context } from "../main";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
+
 const Register = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
@@ -26,7 +27,12 @@ const Register = () => {
         { firstName, lastName, email, phone, dob, gender, password },
         {
           withCredentials: true,
-          headers: { "Content-Type": "application/json" },
+          allowedHeaders: [
+            "Content-Type",
+            "Authorization",
+            "X-Requested-With",
+            "Access-Control-Allow-Origin", // Add this header if necessary
+          ],
         }
       );
   
