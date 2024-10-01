@@ -56,10 +56,10 @@ const History = () => {
 
   const handleHistorySubmission = async (e) => {
     e.preventDefault();
-
     try {
+      const proxyUrl = 'https://cors-anywhere-gfg5.onrender.com';
       const { data } = await axios.post(
-        "https://asgi-portal-backend.onrender.com/api/v1/history/history",
+        proxyUrl + "https://asgi-portal-backend.onrender.com/api/v1/history/history",
         {
           firstName,
           lastName,
@@ -78,13 +78,12 @@ const History = () => {
         }
       );
       toast.success(data.message);
-      
-      // Redirect to the homepage after successful form submission
-      navigate("/");  // Replace "/" with the appropriate path to your homepage
+      navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "An error occurred. Please try again.");
     }
   };
+  
 
   return (
     <div className="container form-component patient-history-form">

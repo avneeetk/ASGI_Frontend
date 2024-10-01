@@ -16,28 +16,26 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios
-        .post(
-          "https://asgi-portal-backend.onrender.com/api/v1/user/login",
-          { email, password, confirmPassword, role: "Patient" },
-          {
-            withCredentials: true,
-            headers: { "Content-Type": "application/json" },
-          }
-        )
-        .then((res) => {
-          toast.success(res.data.message);
-          setIsAuthenticated(true);
-          navigateTo("/");
-          setEmail("");
-          setPassword("");
-          setConfirmPassword("");
-        });
+      const proxyUrl = 'https://cors-anywhere-gfg5.onrender.com';
+      const res = await axios.post(
+        proxyUrl + "https://asgi-portal-backend.onrender.com/api/v1/user/login",
+        { email, password, confirmPassword, role: "Patient" },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      toast.success(res.data.message);
+      setIsAuthenticated(true);
+      navigateTo("/");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Login failed");
     }
   };
-
+  
   if (isAuthenticated) {
     return <Navigate to={"/"} />;
   }

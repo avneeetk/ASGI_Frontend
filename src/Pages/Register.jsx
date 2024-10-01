@@ -20,21 +20,19 @@ const Register = () => {
   const handleRegistration = async (e) => {
     e.preventDefault();
     try {
+      const proxyUrl = 'https://cors-anywhere-gfg5.onrender.com/';
       const res = await axios.post(
-        "https://asgi-portal-backend.onrender.com/api/v1/user/patient/register",
-        { firstName, lastName, email, phone,  dob, gender, password },
+        proxyUrl + "https://asgi-portal-backend.onrender.com/api/v1/user/patient/register",
+        { firstName, lastName, email, phone, dob, gender, password },
         {
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
         }
       );
-
+  
       toast.success(res.data.message);
       setIsAuthenticated(true);
-
-      // Redirect to history page after registration
       navigateTo("/history");
-
       // Clear form fields
       setFirstName("");
       setLastName("");
@@ -47,11 +45,7 @@ const Register = () => {
       toast.error(error.response?.data?.message || "Registration failed");
     }
   };
-
-  if (isAuthenticated) {
-    return <Navigate to={"/"} />;
-  }
-
+  
   return (
     <div style={styles.container}>
       <div style={styles.formContainer}>
