@@ -32,9 +32,10 @@ const Footer = () => {
             <span>+91 98718 50888</span>
           </div>
           <div>
-            <MdEmail />
-            <span>rdssdf2024@gmail.com</span>
-          </div>
+  <MdEmail />
+  <a href="mailto:rdssdf2024@gmail.com">rdssdf2024@gmail.com</a>
+</div>
+
           <div>
             <FaLocationArrow />
             <span>

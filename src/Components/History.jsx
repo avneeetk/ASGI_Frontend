@@ -1,11 +1,49 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Select from 'react-select';
 import CreatableSelect from "react-select/creatable";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";  // Import useNavigate
+import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { Context } from "../main"; // Import Context for authentication
+
+const genderOptions = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+  { value: "Other", label: "Other" },
+];
+
+const amyloidosisTypeOptions = [
+  { value: "AL Amyloidosis", label: "AL Amyloidosis" },
+  { value: "AA Amyloidosis", label: "AA Amyloidosis" },
+  { value: "Hereditary Amyloidosis", label: "Hereditary Amyloidosis" },
+  { value: "Other", label: "Other" },
+];
+
+const symptomOptions = [
+  { value: "Fatigue", label: "Fatigue" },
+  { value: "Swelling (edema)", label: "Swelling (edema)" },
+  { value: "Weight Loss", label: "Weight Loss" },
+  { value: "Shortness of Breath", label: "Shortness of Breath" },
+  { value: "Other", label: "Other" },
+];
+
+const medicationOptions = [
+  { value: "Chemotherapy", label: "Chemotherapy" },
+  { value: "Dexamethasone", label: "Dexamethasone" },
+  { value: "Stem Cell Transplant", label: "Stem Cell Transplant" },
+  { value: "Other", label: "Other" },
+];
+
+const lifestyleOptions = [
+  { value: "Dietary Modifications", label: "Dietary Modifications" },
+  { value: "Exercise", label: "Exercise" },
+  { value: "Regular Monitoring", label: "Regular Monitoring" },
+  { value: "Other", label: "Other" },
+];
 
 const History = () => {
+  const { isAuthenticated } = useContext(Context); // Get authentication state
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
@@ -17,49 +55,33 @@ const History = () => {
   const [familyHistory, setFamilyHistory] = useState("");
   const [lifestyleFactors, setLifestyleFactors] = useState([]);
 
-  const navigate = useNavigate();  // Initialize the useNavigate hook
+  const navigate = useNavigate();
+  
 
-  const genderOptions = [
-    { value: "Male", label: "Male" },
-    { value: "Female", label: "Female" },
-    { value: "Other", label: "Other" },
-  ];
+  // Redirect to login if not logged in
+  useEffect(() => {
+    if (!isAuthenticated) {
+      toast.error("You must be logged in to access this page.");
+      navigate("/login"); // Redirect to login page
+    }
+  }, [isAuthenticated, navigate]);
 
-  const amyloidosisTypeOptions = [
-    { value: "AL Amyloidosis", label: "AL Amyloidosis" },
-    { value: "AA Amyloidosis", label: "AA Amyloidosis" },
-    { value: "Hereditary Amyloidosis", label: "Hereditary Amyloidosis" },
-    { value: "Other", label: "Other" },
-  ];
-
-  const symptomOptions = [
-    { value: "Fatigue", label: "Fatigue" },
-    { value: "Swelling (edema)", label: "Swelling (edema)" },
-    { value: "Weight Loss", label: "Weight Loss" },
-    { value: "Shortness of Breath", label: "Shortness of Breath" },
-    { value: "Other", label: "Other" },
-  ];
-
-  const medicationOptions = [
-    { value: "Chemotherapy", label: "Chemotherapy" },
-    { value: "Dexamethasone", label: "Dexamethasone" },
-    { value: "Stem Cell Transplant", label: "Stem Cell Transplant" },
-    { value: "Other", label: "Other" },
-  ];
-
-  const lifestyleOptions = [
-    { value: "Dietary Modifications", label: "Dietary Modifications" },
-    { value: "Exercise", label: "Exercise" },
-    { value: "Regular Monitoring", label: "Regular Monitoring" },
-    { value: "Other", label: "Other" },
-  ];
+  // Validate the form before submission
+  const isValid = () => {
+    if (!firstName || !lastName || !dob || !gender) {
+      toast.error("Please fill in all required fields.");
+      return false;
+    }
+    return true;
+  };
 
   const handleHistorySubmission = async (e) => {
     e.preventDefault();
+    if (!isValid()) return;
+
     try {
-      const proxyUrl = 'https://cors-anywhere-gfg5.onrender.com';
       const { data } = await axios.post(
-        proxyUrl + "https://asgi-portal-backend.onrender.com/api/v1/history/history",
+        "https://asgi-backend.onrender.com/api/v1/history/add",
         {
           firstName,
           lastName,
@@ -73,22 +95,19 @@ const History = () => {
           lifestyleFactors: lifestyleFactors.map((item) => item.value),
         },
         {
-          withCredentials: true,
-          allowedHeaders: [
-            "Content-Type",
-            "Authorization",
-            "X-Requested-With",
-            "Access-Control-Allow-Origin", // Add this header if necessary
-          ],
+          withCredentials: true, // Send cookies with the request
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
       toast.success(data.message);
-      navigate("/");
+      navigate("/")
     } catch (error) {
       toast.error(error.response?.data?.message || "An error occurred. Please try again.");
+      console.error(error);
     }
   };
-  
 
   return (
     <div className="container form-component patient-history-form">
@@ -100,12 +119,14 @@ const History = () => {
             placeholder="First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            required
           />
           <input
             type="text"
             placeholder="Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            required
           />
         </div>
         <div>
@@ -114,14 +135,16 @@ const History = () => {
             placeholder="Date of Birth"
             value={dob}
             onChange={(e) => setDob(e.target.value)}
+            required
           />
           <Select
             value={gender ? { value: gender, label: gender } : null}
             options={genderOptions}
             onChange={(selected) => setGender(selected?.value || "")}
             placeholder="Select Gender"
+            required
           />
-       </div>
+        </div>
         <div>
           <CreatableSelect
             isMulti
@@ -174,12 +197,17 @@ const History = () => {
             placeholder="Select or Type Lifestyle Factors"
           />
         </div>
-        <button type="submit" style={{ margin: "10 auto" }}>
+        <button type="submit" style={{ margin: "10px auto" }}>
           Submit History
         </button>
       </form>
     </div>
   );
+};
+
+// Define prop types
+History.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default History;

@@ -17,24 +17,23 @@ const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } =
     useContext(Context);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          "https://asgi-portal-backend.onrender.com/api/v1/user/patient/me",
-          {
-            withCredentials: true,
-          }
-        );
-        setIsAuthenticated(true);
-        setUser(response.data.user);
-      } catch {
-        setIsAuthenticated(false);
-        setUser({});
-      }
-    };
-    fetchUser();
-  }, [isAuthenticated,setIsAuthenticated, setUser]);
+ useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(
+        "https://asgi-backend.onrender.com/api/v1/user/patient/me", // Local API URL
+        { withCredentials: true }
+      );
+      setIsAuthenticated(true);
+      setUser(response.data.user);
+    } catch {
+      setIsAuthenticated(false);
+      setUser({});
+    }
+  };
+  fetchUser();
+}, [isAuthenticated, setIsAuthenticated, setUser]);
+
 
   return (
     <>

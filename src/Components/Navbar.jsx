@@ -12,19 +12,27 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("https://asgi-portal-backend.onrender.com/api/v1/user/patient/logout", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "https://asgi-backend.onrender.com/api/v1/user/patient/logout", 
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Or wherever the token is stored
+          },
+        }
+      );
       toast.success(response.data.message);
       setIsAuthenticated(false);
+      localStorage.removeItem("authToken");
       navigate("/login");
     } catch (err) {
       toast.error(err.response?.data?.message || "An error occurred");
     }
   };
+  
 
   const goToLogin = () => {
-    navigate("/login");
+    navigate("/login"); 
   };
 
   return (

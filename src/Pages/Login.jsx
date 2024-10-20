@@ -6,41 +6,32 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 
 const Login = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
-
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigateTo = useNavigate();
-
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const proxyUrl = 'https://cors-anywhere-gfg5.onrender.com';
       const res = await axios.post(
-        proxyUrl + "https://asgi-portal-backend.onrender.com/api/v1/user/login",
-        { email, password, confirmPassword, role: "Patient" },
-        {
-          withCredentials: true,
-          allowedHeaders: [
-            "Content-Type",
-            "Authorization",
-            "X-Requested-With",
-            "Access-Control-Allow-Origin", // Add this header if necessary
-          ],
-        }
+        "https://asgi-backend.onrender.com/api/v1/user/login",
+        { email, password, role: "Patient" },
+        { withCredentials: true }
       );
+  
+      // Ensure the token is being saved
+      localStorage.setItem("authToken", res.data.token); // Store the token
       toast.success(res.data.message);
       setIsAuthenticated(true);
-      navigateTo("/");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
+      navigateTo("/"); // Redirect to home or desired route
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
     }
   };
   
+
   if (isAuthenticated) {
     return <Navigate to={"/"} />;
   }
@@ -49,9 +40,7 @@ const Login = () => {
     <div style={styles.container}>
       <div style={styles.formContainer}>
         <h2>Welcome Back!</h2>
-
         <p>Please Login To Continue</p>
-
         <form onSubmit={handleLogin} style={styles.form}>
           <input
             type="text"
@@ -65,13 +54,6 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={styles.input}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
             style={styles.input}
           />
           <div style={styles.linkContainer}>
@@ -88,6 +70,8 @@ const Login = () => {
     </div>
   );
 };
+
+
 
 const styles = {
   container: {

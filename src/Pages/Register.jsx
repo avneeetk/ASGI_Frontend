@@ -21,18 +21,12 @@ const Register = () => {
   const handleRegistration = async (e) => {
     e.preventDefault();
     try {
-      const proxyUrl = 'https://cors-anywhere-gfg5.onrender.com/';
+      // Use your local API URL here
       const res = await axios.post(
-        proxyUrl + "https://asgi-portal-backend.onrender.com/api/v1/user/patient/register",
+        "https://asgi-backend.onrender.com/api/v1/user/patient/register", // Localhost API URL
         { firstName, lastName, email, phone, dob, gender, password },
         {
-          withCredentials: true,
-          allowedHeaders: [
-            "Content-Type",
-            "Authorization",
-            "X-Requested-With",
-            "Access-Control-Allow-Origin", // Add this header if necessary
-          ],
+          withCredentials: true, // Ensures cookies are sent with the request
         }
       );
   
